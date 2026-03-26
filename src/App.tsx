@@ -609,6 +609,8 @@ export default function App() {
                 value={currentChunk?.notes || ''}
                 onChange={handleNoteChange}
                 placeholder="Enter your review notes for this section here..."
+                spellCheck={true}
+                lang="en"
                 className="flex-1 w-full resize-none rounded-lg border border-slate-200 p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-700 leading-relaxed shadow-sm"
               />
             </div>
