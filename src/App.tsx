@@ -150,7 +150,8 @@ export default function App() {
       readerScrollRef.current.scrollTop =
         chunks[currentChunkIndex].scrollPosition || 0;
     }
-  }, [currentChunkIndex, chunks]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentChunkIndex]);
 
   const handleNavigate = (newIndex: number) => {
     if (readerScrollRef.current) {
