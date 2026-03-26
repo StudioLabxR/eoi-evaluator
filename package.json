@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "lint": "tsc --noEmit",
     "electron:dev": "concurrently -k \"vite\" \"wait-on http://localhost:3000 && cross-env VITE_DEV_SERVER_URL=http://localhost:3000 electron .\"",
-    "dist:mac": "vite build && electron-builder --mac",
+    "dist:mac": "vite build && electron-builder --mac && codesign --force --deep --sign - release/mac-arm64/NMM\\ EOI\\ Evaluator.app && xattr -cr release/mac-arm64/NMM\\ EOI\\ Evaluator.app",
+    "install:mac": "cp -R release/mac-arm64/NMM\\ EOI\\ Evaluator.app /Applications/ && xattr -cr /Applications/NMM\\ EOI\\ Evaluator.app && codesign --force --deep --sign - /Applications/NMM\\ EOI\\ Evaluator.app",
     "dist:win": "vite build && electron-builder --win --x64",
     "dist:linux": "vite build && electron-builder --linux --arm64",
     "dist:all": "vite build && electron-builder --mac --win --x64 --linux --arm64"
@@ -52,7 +53,10 @@
     ],
     "mac": {
       "target": "dmg",
-      "category": "public.app-category.business"
+      "category": "public.app-category.business",
+      "identity": "-",
+      "notarize": false,
+      "gatekeeperAssess": false
     },
     "win": {
       "target": "nsis"
